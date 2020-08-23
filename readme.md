@@ -1,6 +1,8 @@
-# Defining Your Protocol Format
+# Protobuf
 
-## Defining Your Protocol Format (proto 2)
+## Defining Your Protocol Format
+
+### Defining Your Protocol Format (proto 2)
 
 To create your address book application, you'll need to start with a .proto file. The definitions in a .proto file are simple: you add a message for each data structure you want to serialize, then specify a name and a type for each field in the message. Here is the .proto file that defines your messages, addressbook.proto
 
@@ -18,11 +20,11 @@ Each field must be annotated with one of the following modifiers:
 
 - __repeated__: the field may be repeated any number of times (including zero). The order of the repeated values will be preserved in the protocol buffer. Think of repeated fields as dynamically sized arrays.
 
-## Defining Your Protocol Format (proto 3)
+### Defining Your Protocol Format (proto 3)
 
 Required is no longer supported. To compile we need to use:
 
-# Compiling Your Protocol Buffers
+## Compiling Your Protocol Buffers
 
 Now that you have a .proto, the next thing you need to do is generate the classes you'll need to read and write AddressBook (and hence Person and PhoneNumber) messages. To do this, you need to run the protocol buffer compiler protoc on your .proto:
 
@@ -56,9 +58,11 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go
 Now we can compile it. Here we are using the version 3 of protobuffer:
 ```ps
 protoc --proto_path=. --go_out=./protobuf/go --experimental_allow_proto3_optional ./addressbook.proto
+
+protoc --proto_path=. --go_out=./src --experimental_allow_proto3_optional ./addressbook.proto
 ```
 
-# The Protocol Buffer API
+## The Protocol Buffer API
 
 Let's look at some of the generated code and see what classes and functions the compiler has created for you. If you look in addressbook.pb.h, you can see that you have a class for each message you specified in addressbook.proto. Looking closer at the Person class, you can see that the compiler has generated accessors for each field. For example, for the name, id, email, and phones fields, you have these methods:
 
@@ -109,3 +113,14 @@ Repeated fields also have some special methods – if you look at the methods fo
 
 - add another phone number to the message which you can then edit (repeated scalar types have an add_ that just lets you pass in the new value).
 
+# GRPC
+
+```ps
+protoc --proto_path=. --cpp_out=./protobuf/cc ./helloworld.proto
+
+protoc --proto_path=. --csharp_out=./protobuf/c# ./helloworld.proto
+
+protoc --proto_path=. --python_out=./protobuf/py ./helloworld.proto
+
+protoc --proto_path=. --go_out=./src --experimental_allow_proto3_optional ./helloworld.proto
+```

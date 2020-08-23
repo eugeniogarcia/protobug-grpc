@@ -9,8 +9,8 @@ import (
 	"os"
 	"strings"
 
-	pb "../../protobuf/go"
 	"google.golang.org/protobuf/proto"
+	pb "gz.com/grpc/addressbook"
 )
 
 func promptForAddress(r io.Reader) (*pb.Person, error) {

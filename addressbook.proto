@@ -2,6 +2,8 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 
+option go_package = "gz.com/grpc/addressbook";
+
 package tutorial;
 
 message Person {

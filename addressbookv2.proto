@@ -2,6 +2,8 @@ syntax = "proto2";
 
 package tutorial;
 
+option go_package = "gz.com/grpc/addressbook";
+
 message Person {
   required string name = 1;
   required int32 id = 2;
