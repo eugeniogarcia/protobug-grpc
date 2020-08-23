@@ -1,2 +1,5 @@
 *.exe
 pkg
+bin
+obj
+.vs
