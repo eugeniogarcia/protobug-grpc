@@ -115,12 +115,26 @@ Repeated fields also have some special methods – if you look at the methods fo
 
 # GRPC
 
+## Go
+
+In the protofile we are defining both the __message__ and the __service__. To generate the service we need a plugin:
+
 ```ps
-protoc --proto_path=. --cpp_out=./protobuf/cc ./helloworld.proto
+go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
+```
 
-protoc --proto_path=. --csharp_out=./protobuf/c# ./helloworld.proto
+We can generate the protobuf and the client separatedly:
 
-protoc --proto_path=. --python_out=./protobuf/py ./helloworld.proto
-
+```ps
 protoc --proto_path=. --go_out=./src --experimental_allow_proto3_optional ./helloworld.proto
 ```
+
+```ps
+protoc --proto_path=. --go-grpc_out=./src --experimental_allow_proto3_optional ./helloworld.proto
+```
+
+Or we can do it in one go:
+
+```ps
+protoc --proto_path=. --go_out=./src --go-grpc_out=./src --experimental_allow_proto3_optional ./helloworld.proto
+``` 
